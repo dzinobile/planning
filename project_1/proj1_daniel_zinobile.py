@@ -3,10 +3,11 @@ import random
 import pygame
 import time
 
+#Collect user input on which mode to run in
 while True:
     run_mode = input("Enter 1 for random starting conditions OR 2 for hardest starting conditions: ")
 
-    if run_mode == "1":
+    if run_mode == "1": #Random start conditions
 
         #Generate random initial state
         init_state = list(range(0,9))
@@ -32,16 +33,13 @@ while True:
         
         break
             
-    elif run_mode == "2":
+    elif run_mode == "2": #Hardest start conditions
         init_state = [8, 2, 3, 6, 5, 0, 7, 4, 1]
         break
         
     else:
         print("Invalid Option.\n")
 
-
-#Uncomment line below for hardest starting conditions
-#init_state = [8, 2, 3, 6, 5, 0, 7, 4, 1]
 
 #Define goal state
 goal = [1, 4, 7, 2, 5, 8, 3, 6, 0]
