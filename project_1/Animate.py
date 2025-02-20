@@ -3,7 +3,7 @@ import time
 import numpy as np
 
 # open the file for reading
-with open('Nodes.txt', 'r') as f:
+with open('nodePath.txt', 'r') as f:
     # read the content of the file
     content = f.read()
 
