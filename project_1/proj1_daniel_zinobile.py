@@ -3,27 +3,41 @@ import random
 import pygame
 import time
 
-#Generate random initial state
-init_state = list(range(0,9))
+while True:
+    run_mode = input("Enter 1 for random starting conditions OR 2 for hardest starting conditions: ")
 
-#Function to check if random initial state is solvable
-def has_solution(s):
-    sr= [s[0],s[3],s[6],s[1],s[4],s[7],s[2],s[5],s[8]] #reorder list for ease of programming
-    inv_count = 0 #number of inversions
-    for i in range(0,9):
-        for j in range(i+1, 9):
-            if sr[i] != 0 and sr[j] != 0 and sr[i] > sr[j]: #count number of inversions
-                inv_count += 1 
-    if inv_count%2 == 0: #Check if number of inversions is even or odd
-        return True
+    if run_mode == "1":
+
+        #Generate random initial state
+        init_state = list(range(0,9))
+
+        #Function to check if random initial state is solvable
+        def has_solution(s):
+            sr= [s[0],s[3],s[6],s[1],s[4],s[7],s[2],s[5],s[8]] #reorder list for ease of programming
+            inv_count = 0 #number of inversions
+            for i in range(0,9):
+                for j in range(i+1, 9):
+                    if sr[i] != 0 and sr[j] != 0 and sr[i] > sr[j]: #count number of inversions
+                        inv_count += 1 
+            if inv_count%2 == 0: #Check if number of inversions is even or odd
+                return True
+            else:
+                return False
+
+        #Randomize and check initial states until a solvable one is found
+        solvable = False
+        while not solvable:
+            random.shuffle(init_state)
+            solvable = has_solution(init_state)
+        
+        break
+            
+    elif run_mode == "2":
+        init_state = [8, 2, 3, 6, 5, 0, 7, 4, 1]
+        break
+        
     else:
-        return False
-
-#Randomize and check initial states until a solvable one is found
-solvable = False
-while not solvable:
-    random.shuffle(init_state)
-    solvable = has_solution(init_state)
+        print("Invalid Option.\n")
 
 
 #Uncomment line below for hardest starting conditions
