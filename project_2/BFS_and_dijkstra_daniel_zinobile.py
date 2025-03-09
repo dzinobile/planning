@@ -4,6 +4,9 @@ import cv2
 import heapq
 import itertools # for interleaving final animation frames
 
+# Github link:
+# https://github.com/dzinobile/planning/tree/main/project_2
+
 # define map parameters
 h = 50
 w = 180
@@ -173,8 +176,29 @@ for y in range(17,35):
                 add_boundary(x,y)
   
 # define start and end points
-start = (5, h-5)
-end = (w-5, 5)
+valid = False
+while not valid:
+    start_x = int(input("Enter start x: "))
+    start_y = 50-int(input("Enter start y: "))
+    end_x = int(input("Enter goal x: "))
+    end_y = 50-int(input("Enter goal y: "))
+    start = (start_x, start_y)
+    end = (end_x, end_y)
+    if start_x <= 0 or start_x >= w:
+        print("Start position out of bounds")
+    elif start_y <= 0 or start_y >= h:
+        print("Start position out of bounds")
+    elif end_x <= 0 or end_x >= w:
+        print("Goal position out of bounds")
+    elif end_y <= 0 or end_y >= h:
+        print("Goal position out of bounds")
+    elif start in bfs_boundary or start in dij_boundary:
+        print("Invalid start position")
+    elif end in bfs_boundary or end in dij_boundary:
+        print("Invalid goal position")
+    else:
+        valid = True
+
 
 # initialize lists for bfs and dij searches
 bfs_list = [(0, start)]
